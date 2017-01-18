@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.excel.datadownloader">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.Translucent.NoTitleBar">
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".OTADownloadingActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme" >
+        </activity>
+
+        <receiver
+            android:name="com.excel.datadownloader.Receiver"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="ACTION_BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="CONNECTIVITY_CHANGE" />
+                <action android:name="download_launcher_config" />
+                <action android:name="update_cms_ip" />
+                <action android:name="update_room_no" />
+                <action android:name="start_ota" />
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+                <action android:name="start_downloading_wallpapers" />
+                <action android:name="start_restore_service" />
+                <action android:name="start_tv_download_service" />
+                <action android:name="unzip_launcher_config" />
+                <action android:name="unzip_tv_channels" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.excel.datadownloader.DownloadService" />
+        <service android:name="com.excel.datadownloader.OTAUpdateService" />
+        <service android:name="com.excel.datadownloader.OTAUpdateService1" />
+        <service android:name="com.excel.datadownloader.DownloadWallpaperService" />
+        <service android:name="com.excel.datadownloader.TVRestoreService" />
+        <service android:name="com.excel.datadownloader.TVChannelDownloadService" />
+
+    </application>
+
+</manifest>
